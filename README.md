@@ -26,7 +26,7 @@ You can read more about it in [this Medium article](https://medium.com/@tornado.
 
 ## Was it audited?
 
-MishMash.cash protocols, circuits, and smart contracts were audited by a group of experts from [ABDK Consulting](https://www.abdk.consulting), specializing in zero-knowledge, cryptography, and smart contracts.
+Tornado Cash protocols, circuits, and smart contracts were audited by a group of experts from [ABDK Consulting](https://www.abdk.consulting), specializing in zero-knowledge, cryptography, and smart contracts.
 
 During the audit, no critical issues were found and all outstanding issues were fixed. The results can be found here:
 
