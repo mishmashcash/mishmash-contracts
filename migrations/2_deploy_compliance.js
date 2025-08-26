@@ -8,6 +8,7 @@ const MishMashRouterV2 = artifacts.require('MishMashRouterV2')
 const CompliantETNMishMashProposal = artifacts.require('CompliantETNMishMashProposal')
 
 const deploymentsDir = path.join(__dirname, '..', 'deployments')
+const sanctionListPath = path.join(__dirname, '..', 'scripts', 'sanction_events.json')
 
 module.exports = function (deployer) {
   return deployer.then(async () => {
@@ -20,12 +21,20 @@ module.exports = function (deployer) {
       return
     }
 
+    const sanctionList = JSON.parse(fs.readFileSync(sanctionListPath, 'utf8'))
+    if (!sanctionList) {
+      console.error('No sanction list found. Run fetchChainalysisSanctioned.js to get the list.')
+      return
+    }
+
+    const netSanctionedAddresses = sanctionList.netSanctionedAddresses
+
     // ComplianceRegistry
     const complianceRegistry = await deployer.deploy(
       ComplianceRegistry,
       previousDeployment.contracts.GovernanceProxy.address,
-      [],
-      'Test',
+      netSanctionedAddresses,
+      'Chainalysis Sanction List (2025-08-26)',
     )
     previousDeployment.contracts.ComplianceRegistry = await getContractInfo(complianceRegistry)
 

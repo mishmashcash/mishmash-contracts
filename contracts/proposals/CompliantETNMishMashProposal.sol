@@ -36,49 +36,49 @@ contract CompliantETNMishMashProposal {
     function executeProposal() external {
         Governance governance = Governance(address(this));
         
-        ETNMishMash etnInstance1 = new ETNMishMash(verifier, hasher, complianceRegistry, 1 ether / 10, merkleTreeHeight);
+        ETNMishMash etnInstance1 = new ETNMishMash(verifier, hasher, complianceRegistry, 1000 ether, merkleTreeHeight);
         bytes memory callData1 = abi.encodeWithSignature(
             "updateInstance((address,(bool,address,uint256,uint8,uint32)))",
             address(etnInstance1),
             false, // isERC20
             address(0), // token
-            1 ether / 10, // ETN amount
+            1000 ether, // ETN amount
             1, // InstanceState.ENABLED
             0  // protocolFeePercentage
         );
         governance.executeCall(governance.instanceRegistry(), callData1);
 
-        ETNMishMash etnInstance2 = new ETNMishMash(verifier, hasher, complianceRegistry, 1 ether, merkleTreeHeight);
+        ETNMishMash etnInstance2 = new ETNMishMash(verifier, hasher, complianceRegistry, 10000 ether, merkleTreeHeight);
         bytes memory callData2 = abi.encodeWithSignature(
             "updateInstance((address,(bool,address,uint256,uint8,uint32)))",
             address(etnInstance2),
             false, // isERC20
             address(0), // token
-            1 ether, // ETN amount
+            10000 ether, // ETN amount
             1, // InstanceState.ENABLED
             0  // protocolFeePercentage
         );
         governance.executeCall(governance.instanceRegistry(), callData2);
 
-        ETNMishMash etnInstance3 = new ETNMishMash(verifier, hasher, complianceRegistry, 10 ether, merkleTreeHeight);
+        ETNMishMash etnInstance3 = new ETNMishMash(verifier, hasher, complianceRegistry, 100000 ether, merkleTreeHeight);
         bytes memory callData3 = abi.encodeWithSignature(
             "updateInstance((address,(bool,address,uint256,uint8,uint32)))",
             address(etnInstance3),
             false, // isERC20
             address(0), // token
-            10 ether, // ETN amount
+            100000 ether, // ETN amount
             1, // InstanceState.ENABLED
             0  // protocolFeePercentage
         );
         governance.executeCall(governance.instanceRegistry(), callData3);
 
-        ETNMishMash etnInstance4 = new ETNMishMash(verifier, hasher, complianceRegistry, 100 ether, merkleTreeHeight);
+        ETNMishMash etnInstance4 = new ETNMishMash(verifier, hasher, complianceRegistry, 1000000 ether, merkleTreeHeight);
         bytes memory callData4 = abi.encodeWithSignature(
             "updateInstance((address,(bool,address,uint256,uint8,uint32)))",
             address(etnInstance4),
             false, // isERC20
             address(0), // token
-            100 ether, // ETN amount
+            1000000 ether, // ETN amount
             1, // InstanceState.ENABLED
             0  // protocolFeePercentage
         );

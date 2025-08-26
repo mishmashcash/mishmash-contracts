@@ -111,6 +111,21 @@
       "address": "0x7f7679bEb2bEeb15328241415DC66D96FAE52195",
       "blockNumber": 8838366,
       "transactionHash": "0x27ea2cc6a029561b940ed75f79e3eaf5380dccd554b88a3fd80288cbbb25b52c"
+    },
+    "ComplianceRegistry": {
+      "address": "0xdc72A100648d78FF880DF61932B403d2a95Db3bf",
+      "blockNumber": 9248253,
+      "transactionHash": "0x4a5a9a2b6ef829f58858397f7ba5e4de3ded7e6c2fb9d201c7c52436e7d77fd3"
+    },
+    "MishMashRouterV2": {
+      "address": "0x77cfe4d6cD06C76584145B43Ca249Af6C37DBA2F",
+      "blockNumber": 9248254,
+      "transactionHash": "0xb8b9a7f65aca9c840b4b0fa231343e0f109495508282de14bf3ef218ebb9b37e"
+    },
+    "CompliantInstanceProposal": {
+      "address": "0x08e6b4F3D59A44ceda35dDBD59430A50076f202B",
+      "blockNumber": 9248255,
+      "transactionHash": "0xa86e92a3cd9663adcb36a76937870ffce0b2a4a129de8c59d35ec4a6f65fd162"
     }
   }
 }
