@@ -2,7 +2,9 @@
 pragma solidity ^0.7.0;
 
 import "./MerkleTreeWithHistory.sol";
+import "../interfaces/IComplianceRegistry.sol";
 import "@openzeppelin/contracts/utils/ReentrancyGuard.sol";
+
 
 interface IVerifier {
   function verifyProof(bytes memory _proof, uint256[6] memory _input) external returns (bool);
@@ -10,6 +12,7 @@ interface IVerifier {
 
 abstract contract MishMash is MerkleTreeWithHistory, ReentrancyGuard {
   IVerifier public immutable verifier;
+  IComplianceRegistry public immutable complianceRegistry;
   uint256 public denomination;
 
   mapping(bytes32 => bool) public nullifierHashes;
@@ -22,6 +25,7 @@ abstract contract MishMash is MerkleTreeWithHistory, ReentrancyGuard {
   /**
     @dev The constructor
     @param _verifier the address of SNARK verifier for this contract
+    @param _complianceRegistry the address of the compliance registry
     @param _hasher the address of MiMC hash contract
     @param _denomination transfer amount for each deposit
     @param _merkleTreeHeight the height of deposits' Merkle Tree
@@ -29,11 +33,13 @@ abstract contract MishMash is MerkleTreeWithHistory, ReentrancyGuard {
   constructor(
     IVerifier _verifier,
     IHasher _hasher,
+    IComplianceRegistry _complianceRegistry,
     uint256 _denomination,
     uint32 _merkleTreeHeight
   ) MerkleTreeWithHistory(_merkleTreeHeight, _hasher) {
     require(_denomination > 0, "denomination should be greater than 0");
     verifier = _verifier;
+    complianceRegistry = _complianceRegistry;
     denomination = _denomination;
   }
 
@@ -42,6 +48,7 @@ abstract contract MishMash is MerkleTreeWithHistory, ReentrancyGuard {
     @param _commitment the note commitment, which is PedersenHash(nullifier + secret)
   */
   function deposit(bytes32 _commitment) external payable nonReentrant {
+    require(!complianceRegistry.isSanctioned(msg.sender), "Sender is sanctioned");
     require(!commitments[_commitment], "The commitment has been submitted");
 
     uint32 insertedIndex = _insert(_commitment);
@@ -71,6 +78,7 @@ abstract contract MishMash is MerkleTreeWithHistory, ReentrancyGuard {
     uint256 _fee,
     uint256 _refund
   ) external payable nonReentrant {
+    require(!complianceRegistry.isSanctioned(_recipient), "Recipient is sanctioned");
     require(_fee <= denomination, "Fee exceeds transfer value");
     require(!nullifierHashes[_nullifierHash], "The note has been already spent");
     require(isKnownRoot(_root), "Cannot find your merkle root"); // Make sure to use a recent one

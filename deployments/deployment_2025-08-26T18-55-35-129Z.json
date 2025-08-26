@@ -2,6 +2,16 @@
   "timestamp": 1754185927638,
   "network": "5201420",
   "contracts": {
+    "Verifier": {
+      "address": "0xe6fB487e34c52930C7D72369e25323002767C0c6",
+      "blockNumber": null,
+      "transactionHash": null
+    },
+    "Hasher": {
+      "address": "0x53BeE2259B658BB1FC1ee9254929F9737f01EA64",
+      "blockNumber": null,
+      "transactionHash": null
+    },
     "MishMashGovernance": {
       "address": "0x5a0daa2d646aa0465231C89abA4f4C494beF8C11",
       "blockNumber": 8325900,
@@ -101,6 +111,21 @@
       "address": "0x15d7781438DeFcc74a46D3Ed330382E6A91cFe19",
       "blockNumber": 8325919,
       "transactionHash": "0xf8cf5c6990d0f9c043e9c8e15b5ed74710979ea302cc3d5958b57eada739ad56"
+    },
+    "ComplianceRegistry": {
+      "address": "0x2386287d7417D0bFA24a56F84536a53193B2f116",
+      "blockNumber": 8735565,
+      "transactionHash": "0x8442a2b3fa7f3a4af0ecd217a0bab9143c22eb1a9b60f1b4796c4e0e9d47bf6a"
+    },
+    "MishMashRouterV2": {
+      "address": "0x4c1574110E554f3199535ea22635f6A1452e9F64",
+      "blockNumber": 8735567,
+      "transactionHash": "0x64bec195291547000d383a179f935a90491bac7cfe85f431fc8826f5dd8a05b9"
+    },
+    "CompliantInstanceProposal": {
+      "address": "0x9F3C631331582973D7161Bc53D0601e5add4A9C1",
+      "blockNumber": 8735568,
+      "transactionHash": "0xfe52d847ecf0d859b76e546b65590e850aa3c653521cbe0a824d5d926971afc9"
     }
   }
 }

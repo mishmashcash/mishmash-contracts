@@ -2,6 +2,16 @@
   "timestamp": 1754193179233,
   "network": "52014",
   "contracts": {
+    "Verifier": {
+      "address": "0x6294D5a6bd75e094C70cB26E5c33AA1d84d63af6",
+      "blockNumber": null,
+      "transactionHash": null
+    },
+    "Hasher": {
+      "address": "0x80125fA83Eeaf087b0B780B529A501c0C34E2F5f",
+      "blockNumber": null,
+      "transactionHash": null
+    },
     "MishMashGovernance": {
       "address": "0xeBb0866F510A3499EED234c547b33a3E9f62a45D",
       "blockNumber": 8838347,

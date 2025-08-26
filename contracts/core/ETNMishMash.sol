@@ -23,9 +23,10 @@ contract ETNMishMash is MishMash {
   constructor(
     IVerifier _verifier,
     IHasher _hasher,
+    IComplianceRegistry _complianceRegistry,
     uint256 _denomination,
     uint32 _merkleTreeHeight
-  ) MishMash(_verifier, _hasher, _denomination, _merkleTreeHeight) {}
+  ) MishMash(_verifier, _hasher, _complianceRegistry, _denomination, _merkleTreeHeight) {}
 
   function _processDeposit() internal override {
     require(msg.value == denomination, "Please send `mixDenomination` ETN along with transaction");

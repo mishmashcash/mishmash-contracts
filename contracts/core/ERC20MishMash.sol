@@ -28,10 +28,11 @@ contract ERC20MishMash is MishMash {
   constructor(
     IVerifier _verifier,
     IHasher _hasher,
+    IComplianceRegistry _complianceRegistry,
     uint256 _denomination,
     uint32 _merkleTreeHeight,
     IERC20 _token
-  ) MishMash(_verifier, _hasher, _denomination, _merkleTreeHeight) {
+  ) MishMash(_verifier, _hasher, _complianceRegistry, _denomination, _merkleTreeHeight) {
     token = _token;
   }
 

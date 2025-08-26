@@ -21,24 +21,26 @@ pragma experimental ABIEncoderV2;
 import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
 import "../core/ERC20MishMash.sol";
 
-contract ERC20MishMashProposal {
+contract CompliantERC20MishMashProposal {
 
     uint32 immutable merkleTreeHeight = 20;
     IVerifier immutable verifier;
     IHasher immutable hasher;
+    IComplianceRegistry immutable complianceRegistry;
     IERC20 immutable token;
     uint immutable denomination;
 
-    constructor(IVerifier _verifier, IHasher _hasher, IERC20 _token, uint _denomination) {
+    constructor(IVerifier _verifier, IHasher _hasher, IComplianceRegistry _complianceRegistry, IERC20 _token, uint _denomination) {
         verifier = _verifier;
         hasher = _hasher;
+        complianceRegistry = _complianceRegistry;
         token = _token;
         denomination = _denomination;
     }
     
     function executeProposal() external {
 
-        ERC20MishMash erc20Instance = new ERC20MishMash(verifier, hasher, denomination, merkleTreeHeight, token);
+        ERC20MishMash erc20Instance = new ERC20MishMash(verifier, hasher, complianceRegistry, denomination, merkleTreeHeight, token);
 
         bytes memory callData = abi.encodeWithSignature(
             "updateInstance((address,(bool,address,uint256,uint8,uint32)))",
