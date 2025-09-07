@@ -23,70 +23,112 @@ import "../core/ETNMishMash.sol";
 contract CompliantETNMishMashProposal {
 
     uint32 immutable merkleTreeHeight = 20;
+    
     IVerifier immutable verifier;
     IHasher immutable hasher;
     IComplianceRegistry immutable complianceRegistry;
+    InstanceRegistry immutable instanceRegistry;
 
-    constructor(IVerifier _verifier, IHasher _hasher, IComplianceRegistry _complianceRegistry) {
+    constructor(IVerifier _verifier, IHasher _hasher, IComplianceRegistry _complianceRegistry, InstanceRegistry _instanceRegistry) {
         verifier = _verifier;
         hasher = _hasher;
         complianceRegistry = _complianceRegistry;
+        instanceRegistry = _instanceRegistry;
     }
     
     function executeProposal() external {
-        Governance governance = Governance(address(this));
+        
+        instanceRegistry.removeInstance(3);
+        instanceRegistry.removeInstance(2);
+        instanceRegistry.removeInstance(1);
+        instanceRegistry.removeInstance(0);
         
         ETNMishMash etnInstance1 = new ETNMishMash(verifier, hasher, complianceRegistry, 1000 ether, merkleTreeHeight);
-        bytes memory callData1 = abi.encodeWithSignature(
-            "updateInstance((address,(bool,address,uint256,uint8,uint32)))",
-            address(etnInstance1),
-            false, // isERC20
-            address(0), // token
-            1000 ether, // ETN amount
-            1, // InstanceState.ENABLED
-            0  // protocolFeePercentage
+        instanceRegistry.updateInstance(
+            InstanceRegistry.MishMashInstance({
+                addr: address(etnInstance1),
+                instance: InstanceRegistry.Instance({
+                    isERC20: false,
+                    token: address(0),
+                    denomination: 1000 ether,
+                    state: InstanceRegistry.InstanceState.ENABLED,
+                    poolSwappingFee: 0,
+                    protocolFeePercentage: 0
+                })
+            })
         );
-        governance.executeCall(governance.instanceRegistry(), callData1);
+
 
         ETNMishMash etnInstance2 = new ETNMishMash(verifier, hasher, complianceRegistry, 10000 ether, merkleTreeHeight);
-        bytes memory callData2 = abi.encodeWithSignature(
-            "updateInstance((address,(bool,address,uint256,uint8,uint32)))",
-            address(etnInstance2),
-            false, // isERC20
-            address(0), // token
-            10000 ether, // ETN amount
-            1, // InstanceState.ENABLED
-            0  // protocolFeePercentage
+        instanceRegistry.updateInstance(
+            InstanceRegistry.MishMashInstance({
+                addr: address(etnInstance2),
+                instance: InstanceRegistry.Instance({
+                    isERC20: false,
+                    token: address(0),
+                    denomination: 10000 ether,
+                    state: InstanceRegistry.InstanceState.ENABLED,
+                    poolSwappingFee: 0,
+                    protocolFeePercentage: 0
+                })
+            })
         );
-        governance.executeCall(governance.instanceRegistry(), callData2);
 
         ETNMishMash etnInstance3 = new ETNMishMash(verifier, hasher, complianceRegistry, 100000 ether, merkleTreeHeight);
-        bytes memory callData3 = abi.encodeWithSignature(
-            "updateInstance((address,(bool,address,uint256,uint8,uint32)))",
-            address(etnInstance3),
-            false, // isERC20
-            address(0), // token
-            100000 ether, // ETN amount
-            1, // InstanceState.ENABLED
-            0  // protocolFeePercentage
+        instanceRegistry.updateInstance(
+            InstanceRegistry.MishMashInstance({
+                addr: address(etnInstance3),
+                instance: InstanceRegistry.Instance({
+                    isERC20: false,
+                    token: address(0),
+                    denomination: 100000 ether,
+                    state: InstanceRegistry.InstanceState.ENABLED,
+                    poolSwappingFee: 0,
+                    protocolFeePercentage: 0
+                })
+            })
         );
-        governance.executeCall(governance.instanceRegistry(), callData3);
 
         ETNMishMash etnInstance4 = new ETNMishMash(verifier, hasher, complianceRegistry, 1000000 ether, merkleTreeHeight);
-        bytes memory callData4 = abi.encodeWithSignature(
-            "updateInstance((address,(bool,address,uint256,uint8,uint32)))",
-            address(etnInstance4),
-            false, // isERC20
-            address(0), // token
-            1000000 ether, // ETN amount
-            1, // InstanceState.ENABLED
-            0  // protocolFeePercentage
+        instanceRegistry.updateInstance(
+            InstanceRegistry.MishMashInstance({
+                addr: address(etnInstance4),
+                instance: InstanceRegistry.Instance({
+                    isERC20: false,
+                    token: address(0),
+                    denomination: 1000000 ether,
+                    state: InstanceRegistry.InstanceState.ENABLED,
+                    poolSwappingFee: 0,
+                    protocolFeePercentage: 0
+                })
+            })
         );
-        governance.executeCall(governance.instanceRegistry(), callData4);
+
+        
     }
 }
 
-interface Governance {
-    function instanceRegistry() external view returns (address);
-    function executeCall(address target, bytes calldata data) external;
+interface InstanceRegistry {
+
+    enum InstanceState {
+        DISABLED,
+        ENABLED
+    }
+
+    struct Instance {
+        bool isERC20;
+        address token;
+        uint256 denomination;
+        InstanceState state;
+        uint24 poolSwappingFee; 
+        uint32 protocolFeePercentage;
+    }
+
+    struct MishMashInstance {
+        address addr;
+        Instance instance;
+    }
+
+    function updateInstance(MishMashInstance calldata _instance) external;
+    function removeInstance(uint256 _instanceId) external;
 }

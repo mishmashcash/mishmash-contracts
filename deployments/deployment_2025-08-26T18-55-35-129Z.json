@@ -93,24 +93,24 @@
       "transactionHash": "0x2a5a89062e8b32c380ac8736e20f7e97a5d18e93906be09cfb1d5035dbdc08c9"
     },
     "EtnInstance1": {
-      "address": "0xb8b811c0b136BfdFEfA975483C5d6aDDDfF7cc42",
-      "blockNumber": 8325916,
-      "transactionHash": "0x107aaf07b446bab456286babf944edda716af434e23eba9bb35fc3bf9b9e4b1f"
+      "address": "0x358a0e5d814CAAa7eac47705F759C161a5AF077d",
+      "blockNumber": 0,
+      "transactionHash": "0x8425b65d64bc2b80cf8f3d9d5d44633962f429d1c034e1a07e90110374ecba25"
     },
     "EtnInstance2": {
-      "address": "0xb3b770b5d6dC9F471a3B403FE3EAb9c34496AF2C",
-      "blockNumber": 8325917,
-      "transactionHash": "0xa77693f7d0dd604ec56103734f4ddb4c2b0a77b6634694a4e94406582e78bd5a"
+      "address": "0x9a0f9230254Dfd962825353A91aAEa4b794f6295",
+      "blockNumber": 0,
+      "transactionHash": "0x8425b65d64bc2b80cf8f3d9d5d44633962f429d1c034e1a07e90110374ecba25"
     },
     "EtnInstance3": {
-      "address": "0x2EE12a26A0b291a19EF811a48E076503e088208a",
-      "blockNumber": 8325918,
-      "transactionHash": "0xc4185ed44872511c6443d99fe47ab3a028342c88dab4d999005a3132bf812aed"
+      "address": "0xb077305b36B0AA0ae04d6F16FE5d2792b84A8C99",
+      "blockNumber": 0,
+      "transactionHash": "0x8425b65d64bc2b80cf8f3d9d5d44633962f429d1c034e1a07e90110374ecba25"
     },
     "EtnInstance4": {
-      "address": "0x15d7781438DeFcc74a46D3Ed330382E6A91cFe19",
-      "blockNumber": 8325919,
-      "transactionHash": "0xf8cf5c6990d0f9c043e9c8e15b5ed74710979ea302cc3d5958b57eada739ad56"
+      "address": "0x928ebD78DE9a163A11AC245Bc94e5Ed4a393AC72",
+      "blockNumber": 0,
+      "transactionHash": "0x8425b65d64bc2b80cf8f3d9d5d44633962f429d1c034e1a07e90110374ecba25"
     },
     "ComplianceRegistry": {
       "address": "0x2386287d7417D0bFA24a56F84536a53193B2f116",
